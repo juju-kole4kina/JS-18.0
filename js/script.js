@@ -62,11 +62,11 @@ console.log('Цель будет достигнута', Math.ceil(period2), 'м�
 console.log('Бюджет на день:', Math.floor(budgetDay));
 
 // IF/ELSE
-if (budgetDay > 1200) {
+if (budgetDay >= 1200) {
    console.log('У Вас высокий уровень дохода');
-} else if (600 < budgetDay & budgetDay < 1200) {
+} else if (600 <= budgetDay & budgetDay < 1200) {
    console.log('У Вас средний уровень дохода');
-} else if (0 < budgetDay & budgetDay < 600) {
+} else if (0 <= budgetDay & budgetDay < 600) {
    console.log('К сожалению, у Вас уровень дохода ниже среднего');
 } else {
    console.log('Что-то пошло не так');
