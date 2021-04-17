@@ -68,7 +68,7 @@ let appData = {
          let str = '';
          do {
             str = prompt('Введите обязательную статью расходов');
-         } while (!isString(str));
+         } while (!isString(str, true));
          appData.expenses[str] = (function () {
             let sum = 0;
             do {
