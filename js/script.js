@@ -176,3 +176,34 @@ expensesPlus.addEventListener('click', appData.addExpensesBlock);
 incomePlus.addEventListener('click', appData.addIncomeBlock);
 periodSelect.addEventListener('input', appData.changePeriodSelect);
 salaryAmount.addEventListener('input', appData.blockStart);
+
+const addEventChangeNumber = function (event) {
+   let tmpValue = event.target.value;
+   const changeInputNumber = function (event) {
+      if (!/^[\d]+$/.test(event.target.value)) {
+         alert('Доупускается ввод только цифр!');
+         event.target.value = tmpValue;
+         event.target.removeEventListener('change', changeInputNumber);
+      }
+      tmpValue = event.target.value;
+   };
+   event.target.addEventListener('change', changeInputNumber);
+};
+const addEventChangeText = function (event) {
+   let tmpValue = event.target.value;
+   const changeInputText = function (event) {
+      if (!/^[,. а-яА-ЯёЁ]+$/.test(event.target.value)) {
+         alert('Доупускается ввод только русских букв, пробела, точки и запятой!');
+         event.target.value = tmpValue;
+         event.target.removeEventListener('change', changeInputText);
+      }
+      tmpValue = event.target.value;
+   };
+   event.target.addEventListener('change', changeInputText);
+};
+document.querySelectorAll('[placeholder="Наименование"]').forEach(input => {
+   input.addEventListener('focus', addEventChangeText);
+});
+document.querySelectorAll('[placeholder="Сумма"]').forEach(input => {
+   input.addEventListener('focus', addEventChangeNumber);
+});
