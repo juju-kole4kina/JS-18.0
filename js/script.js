@@ -60,7 +60,7 @@ let appData = {
    },
    showResult: function () {
       budgetMonthValue.value = appData.budgetMonth;
-      budgetDayValue.value = Math.floor(appData.budgetDay * 100) / 100;
+      budgetDayValue.value = Math.floor((appData.budgetDay * 100) / 100);
       expensesMonthValue.value = appData.expensesMonth;
       additionalExpensesValue.value = appData.addExpenses.join(', ');
       additionalIncomeValue.value = appData.addIncome.join(', ');
@@ -75,6 +75,9 @@ let appData = {
       if (document.querySelectorAll('.expenses-items').length === 3) {
          expensesPlus.style.display = 'none';
       }
+      cloneExpensesItem.querySelector('.expenses-title').addEventListener('focus', addEventChangeText);
+      cloneExpensesItem.querySelector('.expenses-amount').addEventListener('focus', addEventChangeNumber);
+
    },
    addIncomeBlock: function () {
       const cloneIncomeItem = incomeItems[0].cloneNode(true);
@@ -84,6 +87,8 @@ let appData = {
       if (document.querySelectorAll('.income-items').length === 3) {
          incomePlus.style.display = 'none';
       }
+      cloneIncomeItem.querySelector('.income-title').addEventListener('focus', addEventChangeText);
+      cloneIncomeItem.querySelector('.income-amount').addEventListener('focus', addEventChangeNumber);
    },
    getExpenses: function () {
       document.querySelectorAll('.expenses-items').forEach(item => {
@@ -207,3 +212,10 @@ document.querySelectorAll('[placeholder="Наименование"]').forEach(in
 document.querySelectorAll('[placeholder="Сумма"]').forEach(input => {
    input.addEventListener('focus', addEventChangeNumber);
 });
+appData.addExpensesBlock.forEach(input => {
+   input.addEventListener('focus', addEventChangeText);
+});
+
+// document.cloneExpensesItem.querySelector('.expenses-amount').forEach(input => {
+//    input.addEventListener('focus', addEventChangeNumber);
+// });
