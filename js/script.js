@@ -42,7 +42,7 @@ const addEventChangeText = function (event) {
 
 // VARIABLES
 
-const start = document.getElementById('start'),
+let start = document.getElementById('start'),
    btnPlus = document.getElementsByTagName('button'),
    incomePlus = btnPlus[0],
    expensesPlus = btnPlus[1],
@@ -99,12 +99,7 @@ let appData = {
       });
    },
    reset: function () {
-      for (let i = incomeItems.length - 1; i > 0; i--) {
-         incomeItems[0].parentNode.removeChild(incomeItems[i]);
-      }
-      for (let i = expensesItems.length - 1; i > 0; i--) {
-         expensesItems[0].parentNode.removeChild(expensesItems[i]);
-      }
+
       incomePlus.style.display = '';
       expensesPlus.style.display = '';
       this.blockInputs(false);
@@ -114,6 +109,13 @@ let appData = {
       this.getBudget();
       periodSelect.value = document.querySelector('.period-amount').textContent = 1;
       this.blockStart();
+
+      for (let i = incomeItems.length - 1; i > 0; i--) {
+         incomeItems[0].parentNode.removeChild(incomeItems[i]);
+      }
+      for (let i = expensesItems.length - 1; i > 0; i--) {
+         expensesItems[0].parentNode.removeChild(expensesItems[i]);
+      }
    },
    showResult: function () {
       budgetMonthValue.value = this.budgetMonth;
@@ -129,6 +131,7 @@ let appData = {
       cloneExpensesItem.querySelector('.expenses-title').value = '';
       cloneExpensesItem.querySelector('.expenses-amount').value = '';
       expensesItems[0].parentNode.insertBefore(cloneExpensesItem, expensesPlus);
+      expensesItems = document.querySelectorAll('.expenses-items');
       if (document.querySelectorAll('.expenses-items').length === 3) {
          expensesPlus.style.display = 'none';
       }
@@ -141,6 +144,7 @@ let appData = {
       cloneIncomeItem.querySelector('.income-title').value = '';
       cloneIncomeItem.querySelector('.income-amount').value = '';
       incomeItems[0].parentNode.insertBefore(cloneIncomeItem, incomePlus);
+      incomeItems = document.querySelectorAll('.income-items');
       if (document.querySelectorAll('.income-items').length === 3) {
          incomePlus.style.display = 'none';
       }
