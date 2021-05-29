@@ -13,6 +13,33 @@ const isString = function (str, comma = false) {
    return pattern.test(str);
 };
 
+//VALID
+
+const addEventChangeNumber = function (event) {
+   let tmpValue = event.target.value.trim();
+   const changeInputNumber = function (event) {
+      if (!/^[\d]+$/.test(event.target.value.trim()) && event.target.value.trim() !== '') {
+         alert('Доупускается ввод только цифр!');
+         event.target.value = tmpValue;
+         event.target.removeEventListener('change', changeInputNumber);
+      }
+      tmpValue = event.target.value.trim();
+   };
+   event.target.addEventListener('change', changeInputNumber);
+};
+const addEventChangeText = function (event) {
+   let tmpValue = event.target.value;
+   const changeInputText = function (event) {
+      if (!/^[,. а-яА-ЯёЁ]+$/.test(event.target.value)) {
+         alert('Доупускается ввод только русских букв, пробела, точки и запятой!');
+         event.target.value = tmpValue;
+         event.target.removeEventListener('change', changeInputText);
+      }
+      tmpValue = event.target.value;
+   };
+   event.target.addEventListener('change', changeInputText);
+};
+
 // VARIABLES
 
 const start = document.getElementById('start'),
@@ -67,7 +94,7 @@ let appData = {
       }
    },
    blockInputs: function (disabled = true) {
-      document.querySelectorAll('.data.input[type=text]').forEach(item => {
+      document.querySelectorAll('.data input[type=text]').forEach(item => {
          item.disabled = disabled;
       });
    },
@@ -210,30 +237,7 @@ let appData = {
 
 
 
-const addEventChangeNumber = function (event) {
-   let tmpValue = event.target.value.trim();
-   const changeInputNumber = function (event) {
-      if (!/^[\d]+$/.test(event.target.value.trim()) && event.target.value.trim() !== '') {
-         alert('Доупускается ввод только цифр!');
-         event.target.value = tmpValue;
-         event.target.removeEventListener('change', changeInputNumber);
-      }
-      tmpValue = event.target.value.trim();
-   };
-   event.target.addEventListener('change', changeInputNumber);
-};
-const addEventChangeText = function (event) {
-   let tmpValue = event.target.value;
-   const changeInputText = function (event) {
-      if (!/^[,. а-яА-ЯёЁ]+$/.test(event.target.value)) {
-         alert('Доупускается ввод только русских букв, пробела, точки и запятой!');
-         event.target.value = tmpValue;
-         event.target.removeEventListener('change', changeInputText);
-      }
-      tmpValue = event.target.value;
-   };
-   event.target.addEventListener('change', changeInputText);
-};
+
 let foo = appData.start.bind(appData);
 
 appData.blockStart();
