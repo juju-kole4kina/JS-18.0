@@ -223,7 +223,7 @@ class AppData {
             condition = /^[\d.]+$/;
             textAlert = 'Введите корректное значение в поле проценты! (число от 1 до 100)';
 
-            validPervent = (+target.value.trim() > 0) && (+target.value.trim() < 100) && (+target.value.trim() !== '');
+            validPervent = (+target.value.trim() > 0) && (+target.value.trim() < 101) && (+target.value.trim() !== '');
          }
          if (!condition.test(target.value.trim()) && target.value.trim() || !validPervent) {
             alert(textAlert);
